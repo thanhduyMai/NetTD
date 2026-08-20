@@ -1,0 +1,41 @@
+FROM apache/airflow:2.9.1-python3.10
+
+USER root
+
+# Cài đặt Java, Curl và build tools cho C/C++ libs
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        default-jre-headless \
+        curl \
+        build-essential \
+        python3-dev \
+        libpq-dev \
+        default-libmysqlclient-dev \
+    && apt-get autoremove -yqq --purge \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+
+USER airflow
+
+COPY requirements.txt /requirements.txt
+
+# Bỏ cache để tránh phình image
+RUN pip install --default-timeout=1000 --retries=10 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir -r /requirements.txt
+
+# ==============================================================================
+# TẢI JAR CHO AIRFLOW (Làm Spark Driver)
+# ==============================================================================
+ENV AIRFLOW_PYSPARK_JARS=/home/airflow/.local/lib/python3.10/site-packages/pyspark/jars
+
+RUN curl -o $AIRFLOW_PYSPARK_JARS/hadoop-aws-3.3.4.jar \
+    https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar \
+    && curl -o $AIRFLOW_PYSPARK_JARS/aws-java-sdk-bundle-1.12.262.jar \
+    https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar \
+    && curl -o $AIRFLOW_PYSPARK_JARS/delta-spark_2.12-3.2.0.jar \
+    https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.2.0/delta-spark_2.12-3.2.0.jar \
+    && curl -o $AIRFLOW_PYSPARK_JARS/delta-storage-3.2.0.jar \
+    https://repo1.maven.org/maven2/io/delta/delta-storage/3.2.0/delta-storage-3.2.0.jar \
+    && curl -o $AIRFLOW_PYSPARK_JARS/postgresql-42.7.3.jar \
+    https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar
