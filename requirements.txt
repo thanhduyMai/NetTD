@@ -1,0 +1,23 @@
+# ==========================================
+# THƯ VIỆN CHO APACHE AIRFLOW PROVIDERS
+# ==========================================
+# Cung cấp SparkSubmitOperator để gọi Spark Master
+apache-airflow-providers-apache-spark
+
+# Cung cấp các Hook/Operator để kết nối SFTP (nếu cần dùng trực tiếp từ Airflow)
+apache-airflow-providers-sftp
+apache-airflow-providers-ssh
+
+# Cung cấp kết nối tới PostgreSQL / TimescaleDB
+apache-airflow-providers-postgres
+psycopg2-binary
+
+# ==========================================
+# THƯ VIỆN PYTHON CƠ BẢN CHO XỬ LÝ (Nếu cần)
+# ==========================================
+# Dùng để pull data từ SFTP trong code Python thuần
+paramiko
+
+# (Tùy chọn) Nếu bạn muốn code Airflow thao tác nhẹ với data
+pandas
+numpy

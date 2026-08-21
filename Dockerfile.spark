@@ -1,0 +1,45 @@
+FROM python:3.10-bullseye
+
+USER root
+# Cài đặt Java 11 (Bản chuẩn nhất cho hệ sinh thái Spark/Hadoop)
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openjdk-11-jre-headless curl procps \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV SPARK_HOME=/usr/local/lib/python3.10/site-packages/pyspark
+ENV PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+
+# Cài đặt thư viện Python (đủ đồ chơi cho Time-series và Spatial)
+RUN pip install --default-timeout=1000 --retries=10 --no-cache-dir \
+    pyspark==3.5.1 \
+    h3==3.7.6 \
+    delta-spark==3.2.0 \
+    great_expectations==0.15.50 \
+    geopandas \
+    psycopg2-binary \
+    pandas \
+    trino \
+    prophet \
+    pyarrow
+
+# ==============================================================================
+# TẢI CÁC THƯ VIỆN JAR CẦN THIẾT CHO SPARK
+# ==============================================================================
+
+# 1. AWS S3 cho MinIO (Bronze & Silver)
+RUN curl -o $SPARK_HOME/jars/hadoop-aws-3.3.4.jar \
+    https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar \
+    && curl -o $SPARK_HOME/jars/aws-java-sdk-bundle-1.12.262.jar \
+    https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar
+
+# 2. Delta Lake 
+RUN curl -o $SPARK_HOME/jars/delta-spark_2.12-3.2.0.jar \
+    https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.2.0/delta-spark_2.12-3.2.0.jar \
+    && curl -o $SPARK_HOME/jars/delta-storage-3.2.0.jar \
+    https://repo1.maven.org/maven2/io/delta/delta-storage/3.2.0/delta-storage-3.2.0.jar 
+
+# 3. PostgreSQL JDBC Driver (BẮT BUỘC ĐỂ PUSH DATA TỪ TSAD SANG TIMESCALEDB)
+RUN curl -o $SPARK_HOME/jars/postgresql-42.7.3.jar \
+    https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar

@@ -1,0 +1,40 @@
+[2026-08-21T02:57:54.044+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-21T02:57:54.056+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-07-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:57:54.062+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-07-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:57:54.062+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-21T02:57:54.073+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): 0_fetch_sftp_to_minio> on 2025-07-31 17:00:00+00:00
+[2026-08-21T02:57:54.079+0000] {standard_task_runner.py:63} INFO - Started process 728 to run task
+[2026-08-21T02:57:54.082+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'cell_kpi_spatial_analytics_pipeline', '0_fetch_sftp_to_minio', 'scheduled__2025-07-31T17:00:00+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/kpi_hourly_dag.py', '--cfg-path', '/tmp/tmpfmx7ex9h']
+[2026-08-21T02:57:54.083+0000] {standard_task_runner.py:91} INFO - Job 12: Subtask 0_fetch_sftp_to_minio
+[2026-08-21T02:57:54.119+0000] {task_command.py:426} INFO - Running <TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-07-31T17:00:00+00:00 [running]> on host c90a551abb73
+[2026-08-21T02:57:54.192+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer_team' AIRFLOW_CTX_DAG_ID='cell_kpi_spatial_analytics_pipeline' AIRFLOW_CTX_TASK_ID='0_fetch_sftp_to_minio' AIRFLOW_CTX_EXECUTION_DATE='2025-07-31T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-31T17:00:00+00:00'
+[2026-08-21T02:57:54.192+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-21T02:57:54.207+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.10/site-packages/***/utils/context.py:320 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-08-21T02:57:54.208+0000] {logging_mixin.py:188} INFO -  Đang đọc cấu hình 'sftp_server' từ Airflow...
+[2026-08-21T02:57:54.215+0000] {base.py:84} INFO - Using connection ID 'sftp_server' for task execution.
+[2026-08-21T02:57:54.220+0000] {logging_mixin.py:188} INFO -  Bắt đầu kéo dữ liệu từ duymt@anhvhn.duckdns.org:2222...
+[2026-08-21T02:57:54.220+0000] {logging_mixin.py:188} INFO -   -> File Nguồn: /u01/vdt-data-de/cell-kpi/202508.csv
+[2026-08-21T02:57:55.028+0000] {transport.py:1909} INFO - Connected (version 2.0, client OpenSSH_10.2p1)
+[2026-08-21T02:57:55.940+0000] {transport.py:1909} INFO - Authentication (password) successful!
+[2026-08-21T02:57:56.789+0000] {sftp.py:169} INFO - [chan 0] Opened sftp connection (server version 3)
+[2026-08-21T02:57:56.886+0000] {logging_mixin.py:188} INFO -  Đang tải 202508.csv... 
+[2026-08-21T02:58:56.654+0000] {logging_mixin.py:188} INFO -  (59.767s)
+[2026-08-21T02:58:56.654+0000] {sftp.py:169} INFO - [chan 0] sftp session closed.
+[2026-08-21T02:58:56.655+0000] {logging_mixin.py:188} INFO -  Đang upload file lên MinIO: s3a://landingzone/202508.csv...
+[2026-08-21T02:58:56.665+0000] {base.py:84} INFO - Using connection ID 'minio_default' for task execution.
+[2026-08-21T02:58:56.666+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_default', conn_type='aws') credentials retrieved from login and ***.
+[2026-08-21T02:59:20.597+0000] {logging_mixin.py:188} INFO - 
+=======================================================
+[2026-08-21T02:59:20.598+0000] {logging_mixin.py:188} INFO -  BÁO CÁO HIỆU NĂNG TẢI DỮ LIỆU THÁNG 202508
+[2026-08-21T02:59:20.598+0000] {logging_mixin.py:188} INFO - =======================================================
+[2026-08-21T02:59:20.598+0000] {logging_mixin.py:188} INFO -  Thời gian tải (SFTP -> Worker)  : 59.767 giây
+[2026-08-21T02:59:20.599+0000] {logging_mixin.py:188} INFO -  Thời gian lưu (Worker -> MinIO) : 23.763 giây
+[2026-08-21T02:59:20.599+0000] {logging_mixin.py:188} INFO -  Tổng thời gian Ingestion        : 83.530 giây
+[2026-08-21T02:59:20.599+0000] {logging_mixin.py:188} INFO -  Dữ liệu đích sẵn sàng tại       : s3a://landingzone/202508.csv
+[2026-08-21T02:59:20.599+0000] {logging_mixin.py:188} INFO - =======================================================
+[2026-08-21T02:59:20.599+0000] {python.py:237} INFO - Done. Returned value was: s3a://landingzone/202508.csv
+[2026-08-21T02:59:20.600+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-21T02:59:20.626+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=cell_kpi_spatial_analytics_pipeline, task_id=0_fetch_sftp_to_minio, run_id=scheduled__2025-07-31T17:00:00+00:00, execution_date=20250731T170000, start_date=20260821T025754, end_date=20260821T025920
+[2026-08-21T02:59:20.674+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-08-21T02:59:20.690+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-21T02:59:20.692+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
