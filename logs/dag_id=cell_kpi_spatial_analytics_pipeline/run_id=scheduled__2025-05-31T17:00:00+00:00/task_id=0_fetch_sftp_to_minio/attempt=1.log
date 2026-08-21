@@ -1,0 +1,164 @@
+[2026-08-21T02:35:56.171+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-21T02:35:56.215+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:35:56.228+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:35:56.230+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-21T02:35:56.263+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): 0_fetch_sftp_to_minio> on 2025-05-31 17:00:00+00:00
+[2026-08-21T02:35:56.304+0000] {standard_task_runner.py:63} INFO - Started process 243 to run task
+[2026-08-21T02:35:56.318+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'cell_kpi_spatial_analytics_pipeline', '0_fetch_sftp_to_minio', 'scheduled__2025-05-31T17:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/kpi_hourly_dag.py', '--cfg-path', '/tmp/tmpdbukhd8b']
+[2026-08-21T02:35:56.324+0000] {standard_task_runner.py:91} INFO - Job 5: Subtask 0_fetch_sftp_to_minio
+[2026-08-21T02:35:56.472+0000] {task_command.py:426} INFO - Running <TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [running]> on host c90a551abb73
+[2026-08-21T02:35:56.829+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer_team' AIRFLOW_CTX_DAG_ID='cell_kpi_spatial_analytics_pipeline' AIRFLOW_CTX_TASK_ID='0_fetch_sftp_to_minio' AIRFLOW_CTX_EXECUTION_DATE='2025-05-31T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-05-31T17:00:00+00:00'
+[2026-08-21T02:35:56.829+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-21T02:35:56.878+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.10/site-packages/***/utils/context.py:320 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-08-21T02:35:56.884+0000] {logging_mixin.py:188} INFO -  Đang đọc cấu hình 'sftp_server' từ Airflow...
+[2026-08-21T02:35:56.904+0000] {base.py:84} INFO - Using connection ID 'sftp_server' for task execution.
+[2026-08-21T02:35:56.914+0000] {logging_mixin.py:188} INFO -  Bắt đầu kéo dữ liệu từ duymt@anhvhn.duckdns.org:2222...
+[2026-08-21T02:35:56.915+0000] {logging_mixin.py:188} INFO -   -> File Nguồn: /u01/vdt-data-de/cell-kpi/202505.csv
+[2026-08-21T02:35:57.694+0000] {transport.py:1909} INFO - Connected (version 2.0, client OpenSSH_10.2p1)
+[2026-08-21T02:35:58.677+0000] {transport.py:1909} INFO - Authentication (password) successful!
+[2026-08-21T02:36:00.033+0000] {sftp.py:169} INFO - [chan 0] Opened sftp connection (server version 3)
+[2026-08-21T02:36:00.136+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-21T02:36:00.140+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/dags/kpi_hourly_dag.py", line 50, in fetch_sftp_to_minio_landing
+    sftp.stat(remote_file)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/sftp_client.py", line 493, in stat
+    t, msg = self._request(CMD_STAT, path)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/sftp_client.py", line 857, in _request
+    return self._read_response(num)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/sftp_client.py", line 909, in _read_response
+    self._convert_status(msg)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/sftp_client.py", line 938, in _convert_status
+    raise IOError(errno.ENOENT, text)
+FileNotFoundError: [Errno 2] No such file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/airflow/dags/kpi_hourly_dag.py", line 52, in fetch_sftp_to_minio_landing
+    raise FileNotFoundError(f"File không tồn tại trên SFTP server: {remote_file}")
+FileNotFoundError: File không tồn tại trên SFTP server: /u01/vdt-data-de/cell-kpi/202505.csv
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/kpi_hourly_dag.py", line 66, in fetch_sftp_to_minio_landing
+    raise RuntimeError(f" LỖI TRONG QUÁ TRÌNH TẢI SFTP: {e}")
+RuntimeError:  LỖI TRONG QUÁ TRÌNH TẢI SFTP: File không tồn tại trên SFTP server: /u01/vdt-data-de/cell-kpi/202505.csv
+[2026-08-21T02:36:00.159+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=cell_kpi_spatial_analytics_pipeline, task_id=0_fetch_sftp_to_minio, run_id=scheduled__2025-05-31T17:00:00+00:00, execution_date=20250531T170000, start_date=20260821T023556, end_date=20260821T023600
+[2026-08-21T02:36:00.190+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 5 for task 0_fetch_sftp_to_minio ( LỖI TRONG QUÁ TRÌNH TẢI SFTP: File không tồn tại trên SFTP server: /u01/vdt-data-de/cell-kpi/202505.csv; 243)
+[2026-08-21T02:36:00.220+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-08-21T02:36:00.272+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-21T02:36:00.277+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-08-21T02:44:22.869+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-21T02:44:22.882+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:44:22.888+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:44:22.888+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-21T02:44:22.898+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): 0_fetch_sftp_to_minio> on 2025-05-31 17:00:00+00:00
+[2026-08-21T02:44:22.903+0000] {standard_task_runner.py:63} INFO - Started process 538 to run task
+[2026-08-21T02:44:22.906+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'cell_kpi_spatial_analytics_pipeline', '0_fetch_sftp_to_minio', 'scheduled__2025-05-31T17:00:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/kpi_hourly_dag.py', '--cfg-path', '/tmp/tmpjbisl8c5']
+[2026-08-21T02:44:22.907+0000] {standard_task_runner.py:91} INFO - Job 8: Subtask 0_fetch_sftp_to_minio
+[2026-08-21T02:44:22.942+0000] {task_command.py:426} INFO - Running <TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [running]> on host c90a551abb73
+[2026-08-21T02:44:23.003+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer_team' AIRFLOW_CTX_DAG_ID='cell_kpi_spatial_analytics_pipeline' AIRFLOW_CTX_TASK_ID='0_fetch_sftp_to_minio' AIRFLOW_CTX_EXECUTION_DATE='2025-05-31T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-05-31T17:00:00+00:00'
+[2026-08-21T02:44:23.004+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-21T02:44:23.017+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.10/site-packages/***/utils/context.py:320 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-08-21T02:44:23.018+0000] {logging_mixin.py:188} INFO -  Đang đọc cấu hình 'sftp_server' từ Airflow...
+[2026-08-21T02:44:23.025+0000] {base.py:84} INFO - Using connection ID 'sftp_server' for task execution.
+[2026-08-21T02:44:23.031+0000] {logging_mixin.py:188} INFO -  Bắt đầu kéo dữ liệu từ duymt@anhvhn.duckdns.org:2222...
+[2026-08-21T02:44:23.031+0000] {logging_mixin.py:188} INFO -   -> File Nguồn: /u01/vdt-data-de/cell-kpi/202505.csv
+[2026-08-21T02:44:23.951+0000] {transport.py:1909} INFO - Connected (version 2.0, client OpenSSH_10.2p1)
+[2026-08-21T02:44:24.837+0000] {transport.py:1909} INFO - Authentication (password) successful!
+[2026-08-21T02:44:25.577+0000] {sftp.py:169} INFO - [chan 0] Opened sftp connection (server version 3)
+[2026-08-21T02:44:25.683+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-21T02:44:25.684+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/dags/kpi_hourly_dag.py", line 51, in fetch_sftp_to_minio_landing
+    sftp.stat(remote_file)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/sftp_client.py", line 493, in stat
+    t, msg = self._request(CMD_STAT, path)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/sftp_client.py", line 857, in _request
+    return self._read_response(num)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/sftp_client.py", line 909, in _read_response
+    self._convert_status(msg)
+  File "/home/airflow/.local/lib/python3.10/site-packages/paramiko/sftp_client.py", line 938, in _convert_status
+    raise IOError(errno.ENOENT, text)
+FileNotFoundError: [Errno 2] No such file
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/airflow/dags/kpi_hourly_dag.py", line 53, in fetch_sftp_to_minio_landing
+    raise FileNotFoundError(f"File không tồn tại trên SFTP server: {remote_file}")
+FileNotFoundError: File không tồn tại trên SFTP server: /u01/vdt-data-de/cell-kpi/202505.csv
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/kpi_hourly_dag.py", line 67, in fetch_sftp_to_minio_landing
+    raise RuntimeError(f" LỖI TRONG QUÁ TRÌNH TẢI SFTP: {e}")
+RuntimeError:  LỖI TRONG QUÁ TRÌNH TẢI SFTP: File không tồn tại trên SFTP server: /u01/vdt-data-de/cell-kpi/202505.csv
+[2026-08-21T02:44:25.692+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=cell_kpi_spatial_analytics_pipeline, task_id=0_fetch_sftp_to_minio, run_id=scheduled__2025-05-31T17:00:00+00:00, execution_date=20250531T170000, start_date=20260821T024422, end_date=20260821T024425
+[2026-08-21T02:44:25.704+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 8 for task 0_fetch_sftp_to_minio ( LỖI TRONG QUÁ TRÌNH TẢI SFTP: File không tồn tại trên SFTP server: /u01/vdt-data-de/cell-kpi/202505.csv; 538)
+[2026-08-21T02:44:25.732+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-08-21T02:44:25.745+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-21T02:44:25.747+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-08-21T02:54:52.143+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-21T02:54:52.155+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:54:52.161+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:54:52.161+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-21T02:54:52.173+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): 0_fetch_sftp_to_minio> on 2025-05-31 17:00:00+00:00
+[2026-08-21T02:54:52.179+0000] {standard_task_runner.py:63} INFO - Started process 666 to run task
+[2026-08-21T02:54:52.182+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'cell_kpi_spatial_analytics_pipeline', '0_fetch_sftp_to_minio', 'scheduled__2025-05-31T17:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/kpi_hourly_dag.py', '--cfg-path', '/tmp/tmp4oqra71h']
+[2026-08-21T02:54:52.183+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask 0_fetch_sftp_to_minio
+[2026-08-21T02:54:52.217+0000] {task_command.py:426} INFO - Running <TaskInstance: cell_kpi_spatial_analytics_pipeline.0_fetch_sftp_to_minio scheduled__2025-05-31T17:00:00+00:00 [running]> on host c90a551abb73
+[2026-08-21T02:54:52.294+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer_team' AIRFLOW_CTX_DAG_ID='cell_kpi_spatial_analytics_pipeline' AIRFLOW_CTX_TASK_ID='0_fetch_sftp_to_minio' AIRFLOW_CTX_EXECUTION_DATE='2025-05-31T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-05-31T17:00:00+00:00'
+[2026-08-21T02:54:52.295+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-21T02:54:52.309+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.10/site-packages/***/utils/context.py:320 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-08-21T02:54:52.309+0000] {logging_mixin.py:188} INFO -  Đang đọc cấu hình 'sftp_server' từ Airflow...
+[2026-08-21T02:54:52.315+0000] {base.py:84} INFO - Using connection ID 'sftp_server' for task execution.
+[2026-08-21T02:54:52.320+0000] {logging_mixin.py:188} INFO -  Bắt đầu kéo dữ liệu từ duymt@anhvhn.duckdns.org:2222...
+[2026-08-21T02:54:52.320+0000] {logging_mixin.py:188} INFO -   -> File Nguồn: /u01/vdt-data-de/cell-kpi/202506.csv
+[2026-08-21T02:54:52.992+0000] {transport.py:1909} INFO - Connected (version 2.0, client OpenSSH_10.2p1)
+[2026-08-21T02:54:53.773+0000] {transport.py:1909} INFO - Authentication (password) successful!
+[2026-08-21T02:54:54.615+0000] {sftp.py:169} INFO - [chan 0] Opened sftp connection (server version 3)
+[2026-08-21T02:54:54.925+0000] {logging_mixin.py:188} INFO -  Đang tải 202506.csv... 
+[2026-08-21T02:55:54.496+0000] {logging_mixin.py:188} INFO -  (59.570s)
+[2026-08-21T02:55:54.498+0000] {sftp.py:169} INFO - [chan 0] sftp session closed.
+[2026-08-21T02:55:54.498+0000] {logging_mixin.py:188} INFO -  Đang upload file lên MinIO: s3a://landingzone/202506.csv...
+[2026-08-21T02:55:54.505+0000] {base.py:84} INFO - Using connection ID 'minio_default' for task execution.
+[2026-08-21T02:55:54.505+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_default', conn_type='aws') credentials retrieved from login and ***.
+[2026-08-21T02:56:19.777+0000] {logging_mixin.py:188} INFO - 
+=======================================================
+[2026-08-21T02:56:19.777+0000] {logging_mixin.py:188} INFO -  BÁO CÁO HIỆU NĂNG TẢI DỮ LIỆU THÁNG 202506
+[2026-08-21T02:56:19.778+0000] {logging_mixin.py:188} INFO - =======================================================
+[2026-08-21T02:56:19.778+0000] {logging_mixin.py:188} INFO -  Thời gian tải (SFTP -> Worker)  : 59.570 giây
+[2026-08-21T02:56:19.778+0000] {logging_mixin.py:188} INFO -  Thời gian lưu (Worker -> MinIO) : 25.183 giây
+[2026-08-21T02:56:19.778+0000] {logging_mixin.py:188} INFO -  Tổng thời gian Ingestion        : 84.753 giây
+[2026-08-21T02:56:19.778+0000] {logging_mixin.py:188} INFO -  Dữ liệu đích sẵn sàng tại       : s3a://landingzone/202506.csv
+[2026-08-21T02:56:19.778+0000] {logging_mixin.py:188} INFO - =======================================================
+[2026-08-21T02:56:19.779+0000] {python.py:237} INFO - Done. Returned value was: s3a://landingzone/202506.csv
+[2026-08-21T02:56:19.779+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-21T02:56:19.798+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=cell_kpi_spatial_analytics_pipeline, task_id=0_fetch_sftp_to_minio, run_id=scheduled__2025-05-31T17:00:00+00:00, execution_date=20250531T170000, start_date=20260821T025452, end_date=20260821T025619
+[2026-08-21T02:56:19.850+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-08-21T02:56:19.864+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-21T02:56:19.866+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

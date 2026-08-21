@@ -1,0 +1,38 @@
+FROM apache/airflow:2.9.1-python3.10
+
+USER root
+# Debian 12 (Bookworm) sử dụng Java 17 làm mặc định
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends default-jre-headless curl \
+    && apt-get autoremove -yqq --purge \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+
+USER airflow
+COPY requirements.txt /requirements.txt
+
+# SỬ DỤNG CONSTRAINT ĐỂ ÉP PIP KHÔNG ĐƯỢC XÓA/NÂNG CẤP AIRFLOW LÕI
+RUN pip install --no-cache-dir -r /requirements.txt \
+    --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.9.1/constraints-3.10.txt"
+
+# ==============================================================================
+# TẢI JAR CHO AIRFLOW 
+# ==============================================================================
+ENV AIRFLOW_PYSPARK_JARS=/home/airflow/.local/lib/python3.10/site-packages/pyspark/jars
+
+# Tạo thư mục trước để tránh lỗi curl (Lỗi 23)
+RUN mkdir -p $AIRFLOW_PYSPARK_JARS
+
+# Tải 5 file JAR 
+RUN curl -o $AIRFLOW_PYSPARK_JARS/hadoop-aws-3.3.4.jar \
+    https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar \
+    && curl -o $AIRFLOW_PYSPARK_JARS/aws-java-sdk-bundle-1.12.262.jar \
+    https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar \
+    && curl -o $AIRFLOW_PYSPARK_JARS/delta-spark_2.12-3.2.0.jar \
+    https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.2.0/delta-spark_2.12-3.2.0.jar \
+    && curl -o $AIRFLOW_PYSPARK_JARS/delta-storage-3.2.0.jar \
+    https://repo1.maven.org/maven2/io/delta/delta-storage/3.2.0/delta-storage-3.2.0.jar \
+    && curl -o $AIRFLOW_PYSPARK_JARS/postgresql-42.7.3.jar \
+    https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.3/postgresql-42.7.3.jar
