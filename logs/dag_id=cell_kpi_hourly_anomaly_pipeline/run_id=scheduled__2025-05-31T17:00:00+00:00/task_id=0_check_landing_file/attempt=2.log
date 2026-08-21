@@ -1,0 +1,21 @@
+[2026-08-21T09:43:00.209+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-21T09:43:00.222+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cell_kpi_hourly_anomaly_pipeline.0_check_landing_file scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T09:43:00.228+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cell_kpi_hourly_anomaly_pipeline.0_check_landing_file scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T09:43:00.228+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 3
+[2026-08-21T09:43:00.237+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): 0_check_landing_file> on 2025-05-31 17:00:00+00:00
+[2026-08-21T09:43:00.243+0000] {standard_task_runner.py:63} INFO - Started process 669 to run task
+[2026-08-21T09:43:00.246+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'cell_kpi_hourly_anomaly_pipeline', '0_check_landing_file', 'scheduled__2025-05-31T17:00:00+00:00', '--job-id', '78', '--raw', '--subdir', 'DAGS_FOLDER/cell_kpi_hourly_anomaly.py', '--cfg-path', '/tmp/tmpuyicwl67']
+[2026-08-21T09:43:00.247+0000] {standard_task_runner.py:91} INFO - Job 78: Subtask 0_check_landing_file
+[2026-08-21T09:43:00.285+0000] {task_command.py:426} INFO - Running <TaskInstance: cell_kpi_hourly_anomaly_pipeline.0_check_landing_file scheduled__2025-05-31T17:00:00+00:00 [running]> on host 5d28507313c5
+[2026-08-21T09:43:00.351+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer_team' AIRFLOW_CTX_DAG_ID='cell_kpi_hourly_anomaly_pipeline' AIRFLOW_CTX_TASK_ID='0_check_landing_file' AIRFLOW_CTX_EXECUTION_DATE='2025-05-31T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-05-31T17:00:00+00:00'
+[2026-08-21T09:43:00.351+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-21T09:43:00.365+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.10/site-packages/***/utils/context.py:320 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-08-21T09:43:00.376+0000] {base.py:84} INFO - Using connection ID 'minio_default' for task execution.
+[2026-08-21T09:43:00.377+0000] {connection_wrapper.py:384} INFO - AWS Connection (conn_id='minio_default', conn_type='aws') credentials retrieved from login and ***.
+[2026-08-21T09:43:00.679+0000] {logging_mixin.py:188} INFO -  File 202506.csv đã sẵn sàng trên Landing Zone.
+[2026-08-21T09:43:00.680+0000] {python.py:237} INFO - Done. Returned value was: s3a://landingzone/202506.csv
+[2026-08-21T09:43:00.680+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-21T09:43:00.696+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=cell_kpi_hourly_anomaly_pipeline, task_id=0_check_landing_file, run_id=scheduled__2025-05-31T17:00:00+00:00, execution_date=20250531T170000, start_date=20260821T094300, end_date=20260821T094300
+[2026-08-21T09:43:00.738+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-08-21T09:43:00.759+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-08-21T09:43:00.760+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

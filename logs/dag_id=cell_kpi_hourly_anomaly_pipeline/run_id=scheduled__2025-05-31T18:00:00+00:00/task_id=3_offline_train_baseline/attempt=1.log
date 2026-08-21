@@ -1,0 +1,411 @@
+[2026-08-21T09:54:18.806+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-21T09:54:18.836+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cell_kpi_hourly_anomaly_pipeline.3_offline_train_baseline scheduled__2025-05-31T18:00:00+00:00 [queued]>
+[2026-08-21T09:54:18.848+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cell_kpi_hourly_anomaly_pipeline.3_offline_train_baseline scheduled__2025-05-31T18:00:00+00:00 [queued]>
+[2026-08-21T09:54:18.848+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-21T09:54:18.867+0000] {taskinstance.py:2330} INFO - Executing <Task(SparkSubmitOperator): 3_offline_train_baseline> on 2025-05-31 18:00:00+00:00
+[2026-08-21T09:54:18.875+0000] {standard_task_runner.py:63} INFO - Started process 2323 to run task
+[2026-08-21T09:54:18.882+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'cell_kpi_hourly_anomaly_pipeline', '3_offline_train_baseline', 'scheduled__2025-05-31T18:00:00+00:00', '--job-id', '92', '--raw', '--subdir', 'DAGS_FOLDER/cell_kpi_hourly_anomaly.py', '--cfg-path', '/tmp/tmps3nqjcc7']
+[2026-08-21T09:54:18.885+0000] {standard_task_runner.py:91} INFO - Job 92: Subtask 3_offline_train_baseline
+[2026-08-21T09:54:18.966+0000] {task_command.py:426} INFO - Running <TaskInstance: cell_kpi_hourly_anomaly_pipeline.3_offline_train_baseline scheduled__2025-05-31T18:00:00+00:00 [running]> on host 5d28507313c5
+[2026-08-21T09:54:19.049+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.10/site-packages/***/utils/context.py:212 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-08-21T09:54:19.125+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer_team' AIRFLOW_CTX_DAG_ID='cell_kpi_hourly_anomaly_pipeline' AIRFLOW_CTX_TASK_ID='3_offline_train_baseline' AIRFLOW_CTX_EXECUTION_DATE='2025-05-31T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-05-31T18:00:00+00:00'
+[2026-08-21T09:54:19.125+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-21T09:54:19.169+0000] {base.py:84} INFO - Using connection ID 'spark-master' for task execution.
+[2026-08-21T09:54:19.171+0000] {spark_submit.py:401} INFO - Spark-Submit cmd: spark-submit --master spark://spark-master:7077 --name arrow-spark --deploy-mode client /opt/***/spark_scripts/3_offline_train.py --train_until_date 2025-06-01
+[2026-08-21T09:54:19.365+0000] {spark_submit.py:571} INFO - /home/***/.local/lib/python3.10/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2026-08-21T09:54:23.858+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:23 INFO SparkContext: Running Spark version 3.5.1
+[2026-08-21T09:54:23.859+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:23 INFO SparkContext: OS info Linux, 6.8.0-1052-azure, amd64
+[2026-08-21T09:54:23.860+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:23 INFO SparkContext: Java version 17.0.20
+[2026-08-21T09:54:23.972+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:23 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2026-08-21T09:54:24.094+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO ResourceUtils: ==============================================================
+[2026-08-21T09:54:24.096+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2026-08-21T09:54:24.096+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO ResourceUtils: ==============================================================
+[2026-08-21T09:54:24.096+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SparkContext: Submitted application: Offline_Train_Baseline_until_2025-06-01
+[2026-08-21T09:54:24.118+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2026-08-21T09:54:24.128+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO ResourceProfile: Limiting resource is cpu
+[2026-08-21T09:54:24.129+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2026-08-21T09:54:24.193+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SecurityManager: Changing view acls to: ***
+[2026-08-21T09:54:24.193+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SecurityManager: Changing modify acls to: ***
+[2026-08-21T09:54:24.193+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SecurityManager: Changing view acls groups to:
+[2026-08-21T09:54:24.194+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SecurityManager: Changing modify acls groups to:
+[2026-08-21T09:54:24.194+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: ***; groups with view permissions: EMPTY; users with modify permissions: ***; groups with modify permissions: EMPTY
+[2026-08-21T09:54:24.430+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO Utils: Successfully started service 'sparkDriver' on port 44747.
+[2026-08-21T09:54:24.456+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SparkEnv: Registering MapOutputTracker
+[2026-08-21T09:54:24.512+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SparkEnv: Registering BlockManagerMaster
+[2026-08-21T09:54:24.539+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2026-08-21T09:54:24.543+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2026-08-21T09:54:24.549+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2026-08-21T09:54:24.595+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-adb6c519-acda-470e-8a25-73e124e39f8c
+[2026-08-21T09:54:24.619+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2026-08-21T09:54:24.631+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO SparkEnv: Registering OutputCommitCoordinator
+[2026-08-21T09:54:24.811+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+[2026-08-21T09:54:24.895+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:24 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2026-08-21T09:54:25.185+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+[2026-08-21T09:54:25.289+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.7:7077 after 59 ms (0 ms spent in bootstraps)
+[2026-08-21T09:54:25.483+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260821095425-0004
+[2026-08-21T09:54:25.506+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34329.
+[2026-08-21T09:54:25.507+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO NettyBlockTransferService: Server created on 5d28507313c5:34329
+[2026-08-21T09:54:25.511+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2026-08-21T09:54:25.520+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 5d28507313c5, 34329, None)
+[2026-08-21T09:54:25.525+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO BlockManagerMasterEndpoint: Registering block manager 5d28507313c5:34329 with 434.4 MiB RAM, BlockManagerId(driver, 5d28507313c5, 34329, None)
+[2026-08-21T09:54:25.525+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 5d28507313c5, 34329, None)
+[2026-08-21T09:54:25.527+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 5d28507313c5, 34329, None)
+[2026-08-21T09:54:25.828+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:25 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+[2026-08-21T09:54:26.071+0000] {spark_submit.py:571} INFO - Bắt đầu OFFLINE TRAINING dữ liệu từ đầu đến ngày 2025-06-01...
+[2026-08-21T09:54:26.155+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:26 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+[2026-08-21T09:54:26.166+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:26 INFO SharedState: Warehouse path is 'file:/opt/***/spark-warehouse'.
+[2026-08-21T09:54:27.802+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:27 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[2026-08-21T09:54:27.829+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:27 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+[2026-08-21T09:54:27.831+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:27 INFO MetricsSystemImpl: s3a-file-system metrics system started
+[2026-08-21T09:54:59.579+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:59 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260821095425-0004/0 on worker-20260821093253-172.18.0.8-35191 (172.18.0.8:35191) with 2 core(s)
+[2026-08-21T09:54:59.581+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:59 INFO StandaloneSchedulerBackend: Granted executor ID app-20260821095425-0004/0 on hostPort 172.18.0.8:35191 with 2 core(s), 1024.0 MiB RAM
+[2026-08-21T09:54:59.589+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:59 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260821095425-0004/1 on worker-20260821093253-172.18.0.9-46549 (172.18.0.9:46549) with 2 core(s)
+[2026-08-21T09:54:59.593+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:59 INFO StandaloneSchedulerBackend: Granted executor ID app-20260821095425-0004/1 on hostPort 172.18.0.9:46549 with 2 core(s), 1024.0 MiB RAM
+[2026-08-21T09:54:59.730+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:59 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260821095425-0004/1 is now RUNNING
+[2026-08-21T09:54:59.738+0000] {spark_submit.py:571} INFO - 26/08/21 09:54:59 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260821095425-0004/0 is now RUNNING
+[2026-08-21T09:55:04.562+0000] {spark_submit.py:571} INFO - 26/08/21 09:55:04 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.8:39616) with ID 0,  ResourceProfileId 0
+[2026-08-21T09:55:04.694+0000] {spark_submit.py:571} INFO - 26/08/21 09:55:04 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.9:33028) with ID 1,  ResourceProfileId 0
+[2026-08-21T09:55:04.723+0000] {spark_submit.py:571} INFO - 26/08/21 09:55:04 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.8:33175 with 434.4 MiB RAM, BlockManagerId(0, 172.18.0.8, 33175, None)
+[2026-08-21T09:55:04.883+0000] {spark_submit.py:571} INFO - 26/08/21 09:55:04 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.9:40475 with 434.4 MiB RAM, BlockManagerId(1, 172.18.0.9, 40475, None)
+[2026-08-21T10:10:42.902+0000] {spark_submit.py:571} INFO - 26/08/21 10:10:42 INFO DelegatingLogStore: LogStore `LogStoreAdapter(io.delta.storage.S3SingleDriverLogStore)` is used for scheme `s3a`
+[2026-08-21T10:12:49.895+0000] {spark_submit.py:571} INFO - 26/08/21 10:12:49 WARN DeltaLog: Failed to parse s3a://silver/cell_kpi_clean/_delta_log/_last_checkpoint. This may happen if there was an error during read operation, or a file appears to be partial. Sleeping and trying again.
+[2026-08-21T10:12:49.896+0000] {spark_submit.py:571} INFO - org.apache.hadoop.fs.s3a.AWSClientIOException: getFileStatus on s3a://silver/cell_kpi_clean/_delta_log/_last_checkpoint: com.amazonaws.SdkClientException: Unable to execute HTTP request: silver.minio: Name or service not known: Unable to execute HTTP request: silver.minio: Name or service not known
+[2026-08-21T10:12:49.896+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AUtils.translateException(S3AUtils.java:214)
+[2026-08-21T10:12:49.896+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AUtils.translateException(S3AUtils.java:175)
+[2026-08-21T10:12:49.896+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3799)
+[2026-08-21T10:12:49.896+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.innerGetFileStatus(S3AFileSystem.java:3688)
+[2026-08-21T10:12:49.897+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.extractOrFetchSimpleFileStatus(S3AFileSystem.java:5401)
+[2026-08-21T10:12:49.897+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1465)
+[2026-08-21T10:12:49.897+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1441)
+[2026-08-21T10:12:49.897+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)
+[2026-08-21T10:12:49.897+0000] {spark_submit.py:571} INFO - at io.delta.storage.HadoopFileSystemLogStore.read(HadoopFileSystemLogStore.java:46)
+[2026-08-21T10:12:49.897+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.storage.LogStoreAdaptor.read(LogStore.scala:412)
+[2026-08-21T10:12:49.897+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.storage.DelegatingLogStore.read(DelegatingLogStore.scala:96)
+[2026-08-21T10:12:49.897+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.$anonfun$loadMetadataFromFile$1(Checkpoints.scala:376)
+[2026-08-21T10:12:49.898+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:12:49.898+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:12:49.898+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordFrameProfile(DeltaLog.scala:74)
+[2026-08-21T10:12:49.898+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:136)
+[2026-08-21T10:12:49.898+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)
+[2026-08-21T10:12:49.898+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)
+[2026-08-21T10:12:49.898+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordOperation(DeltaLog.scala:74)
+[2026-08-21T10:12:49.899+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:135)
+[2026-08-21T10:12:49.899+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:125)
+[2026-08-21T10:12:49.899+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:115)
+[2026-08-21T10:12:49.899+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordDeltaOperation(DeltaLog.scala:74)
+[2026-08-21T10:12:49.899+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.loadMetadataFromFile(Checkpoints.scala:375)
+[2026-08-21T10:12:49.899+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.readLastCheckpointFile(Checkpoints.scala:369)
+[2026-08-21T10:12:49.899+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.readLastCheckpointFile$(Checkpoints.scala:368)
+[2026-08-21T10:12:49.900+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.readLastCheckpointFile(DeltaLog.scala:74)
+[2026-08-21T10:12:49.900+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.$anonfun$getSnapshotAtInit$2(SnapshotManagement.scala:575)
+[2026-08-21T10:12:49.900+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:12:49.900+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:12:49.900+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordFrameProfile(DeltaLog.scala:74)
+[2026-08-21T10:12:49.900+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.$anonfun$getSnapshotAtInit$1(SnapshotManagement.scala:573)
+[2026-08-21T10:12:49.900+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.withSnapshotLockInterruptibly(SnapshotManagement.scala:78)
+[2026-08-21T10:12:49.900+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.withSnapshotLockInterruptibly$(SnapshotManagement.scala:75)
+[2026-08-21T10:12:49.901+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.withSnapshotLockInterruptibly(DeltaLog.scala:74)
+[2026-08-21T10:12:49.901+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.getSnapshotAtInit(SnapshotManagement.scala:573)
+[2026-08-21T10:12:49.901+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.getSnapshotAtInit$(SnapshotManagement.scala:572)
+[2026-08-21T10:12:49.901+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.getSnapshotAtInit(DeltaLog.scala:74)
+[2026-08-21T10:12:49.901+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.$init$(SnapshotManagement.scala:69)
+[2026-08-21T10:12:49.901+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.<init>(DeltaLog.scala:80)
+[2026-08-21T10:12:49.901+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$4(DeltaLog.scala:853)
+[2026-08-21T10:12:49.902+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.allowInvokingTransformsInAnalyzer(AnalysisHelper.scala:323)
+[2026-08-21T10:12:49.902+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$3(DeltaLog.scala:848)
+[2026-08-21T10:12:49.902+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:12:49.902+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:12:49.902+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.recordFrameProfile(DeltaLog.scala:651)
+[2026-08-21T10:12:49.902+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:136)
+[2026-08-21T10:12:49.902+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)
+[2026-08-21T10:12:49.903+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)
+[2026-08-21T10:12:49.903+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.recordOperation(DeltaLog.scala:651)
+[2026-08-21T10:12:49.903+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:135)
+[2026-08-21T10:12:49.903+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:125)
+[2026-08-21T10:12:49.903+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:115)
+[2026-08-21T10:12:49.903+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.recordDeltaOperation(DeltaLog.scala:651)
+[2026-08-21T10:12:49.903+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.createDeltaLog$1(DeltaLog.scala:847)
+[2026-08-21T10:12:49.904+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$5(DeltaLog.scala:866)
+[2026-08-21T10:12:49.904+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$LocalManualCache$1.load(LocalCache.java:4792)
+[2026-08-21T10:12:49.904+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3599)
+[2026-08-21T10:12:49.904+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2379)
+[2026-08-21T10:12:49.904+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2342)
+[2026-08-21T10:12:49.904+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2257)
+[2026-08-21T10:12:49.904+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache.get(LocalCache.java:4000)
+[2026-08-21T10:12:49.905+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$LocalManualCache.get(LocalCache.java:4789)
+[2026-08-21T10:12:49.905+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.getDeltaLogFromCache$1(DeltaLog.scala:865)
+[2026-08-21T10:12:49.905+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.apply(DeltaLog.scala:875)
+[2026-08-21T10:12:49.905+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.forTable(DeltaLog.scala:751)
+[2026-08-21T10:12:49.905+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.$anonfun$deltaLog$1(DeltaTableV2.scala:92)
+[2026-08-21T10:12:49.905+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2$.withEnrichedUnsupportedTableException(DeltaTableV2.scala:367)
+[2026-08-21T10:12:49.905+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.deltaLog$lzycompute(DeltaTableV2.scala:92)
+[2026-08-21T10:12:49.906+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.deltaLog(DeltaTableV2.scala:90)
+[2026-08-21T10:12:49.906+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.$anonfun$initialSnapshot$4(DeltaTableV2.scala:145)
+[2026-08-21T10:12:49.906+0000] {spark_submit.py:571} INFO - at scala.Option.getOrElse(Option.scala:189)
+[2026-08-21T10:12:49.906+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.$anonfun$initialSnapshot$1(DeltaTableV2.scala:145)
+[2026-08-21T10:12:49.906+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2$.withEnrichedUnsupportedTableException(DeltaTableV2.scala:367)
+[2026-08-21T10:12:49.906+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.initialSnapshot$lzycompute(DeltaTableV2.scala:144)
+[2026-08-21T10:12:49.906+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.initialSnapshot(DeltaTableV2.scala:124)
+[2026-08-21T10:12:49.907+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.toBaseRelation$lzycompute(DeltaTableV2.scala:236)
+[2026-08-21T10:12:49.907+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.toBaseRelation(DeltaTableV2.scala:234)
+[2026-08-21T10:12:49.907+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.sources.DeltaDataSource.$anonfun$createRelation$5(DeltaDataSource.scala:250)
+[2026-08-21T10:12:49.907+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:12:49.907+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:12:49.907+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.sources.DeltaDataSource.recordFrameProfile(DeltaDataSource.scala:49)
+[2026-08-21T10:12:49.907+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.sources.DeltaDataSource.createRelation(DeltaDataSource.scala:209)
+[2026-08-21T10:12:49.908+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:346)
+[2026-08-21T10:12:49.908+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:229)
+[2026-08-21T10:12:49.908+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.DataFrameReader.$anonfun$load$2(DataFrameReader.scala:211)
+[2026-08-21T10:12:49.908+0000] {spark_submit.py:571} INFO - at scala.Option.getOrElse(Option.scala:189)
+[2026-08-21T10:12:49.908+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)
+[2026-08-21T10:12:49.908+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:186)
+[2026-08-21T10:12:49.909+0000] {spark_submit.py:571} INFO - at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2026-08-21T10:12:49.909+0000] {spark_submit.py:571} INFO - at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+[2026-08-21T10:12:49.909+0000] {spark_submit.py:571} INFO - at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2026-08-21T10:12:49.909+0000] {spark_submit.py:571} INFO - at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+[2026-08-21T10:12:49.909+0000] {spark_submit.py:571} INFO - at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+[2026-08-21T10:12:49.909+0000] {spark_submit.py:571} INFO - at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+[2026-08-21T10:12:49.909+0000] {spark_submit.py:571} INFO - at py4j.Gateway.invoke(Gateway.java:282)
+[2026-08-21T10:12:49.910+0000] {spark_submit.py:571} INFO - at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+[2026-08-21T10:12:49.910+0000] {spark_submit.py:571} INFO - at py4j.commands.CallCommand.execute(CallCommand.java:79)
+[2026-08-21T10:12:49.910+0000] {spark_submit.py:571} INFO - at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+[2026-08-21T10:12:49.910+0000] {spark_submit.py:571} INFO - at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+[2026-08-21T10:12:49.910+0000] {spark_submit.py:571} INFO - at java.base/java.lang.Thread.run(Thread.java:840)
+[2026-08-21T10:12:49.910+0000] {spark_submit.py:571} INFO - Caused by: com.amazonaws.SdkClientException: Unable to execute HTTP request: silver.minio: Name or service not known
+[2026-08-21T10:12:49.911+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleRetryableException(AmazonHttpClient.java:1219)
+[2026-08-21T10:12:49.911+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1165)
+[2026-08-21T10:12:49.911+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.doExecute(AmazonHttpClient.java:814)
+[2026-08-21T10:12:49.911+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeWithTimer(AmazonHttpClient.java:781)
+[2026-08-21T10:12:49.911+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.execute(AmazonHttpClient.java:755)
+[2026-08-21T10:12:49.911+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.access$500(AmazonHttpClient.java:715)
+[2026-08-21T10:12:49.911+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutionBuilderImpl.execute(AmazonHttpClient.java:697)
+[2026-08-21T10:12:49.911+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:561)
+[2026-08-21T10:12:49.912+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:541)
+[2026-08-21T10:12:49.912+0000] {spark_submit.py:571} INFO - at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5456)
+[2026-08-21T10:12:49.912+0000] {spark_submit.py:571} INFO - at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5403)
+[2026-08-21T10:12:49.912+0000] {spark_submit.py:571} INFO - at com.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:1372)
+[2026-08-21T10:12:49.912+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.lambda$getObjectMetadata$10(S3AFileSystem.java:2545)
+[2026-08-21T10:12:49.912+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.Invoker.retryUntranslated(Invoker.java:414)
+[2026-08-21T10:12:49.913+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.Invoker.retryUntranslated(Invoker.java:377)
+[2026-08-21T10:12:49.913+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.getObjectMetadata(S3AFileSystem.java:2533)
+[2026-08-21T10:12:49.913+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.getObjectMetadata(S3AFileSystem.java:2513)
+[2026-08-21T10:12:49.913+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3776)
+[2026-08-21T10:12:49.913+0000] {spark_submit.py:571} INFO - ... 98 more
+[2026-08-21T10:12:49.913+0000] {spark_submit.py:571} INFO - Caused by: java.net.UnknownHostException: silver.minio: Name or service not known
+[2026-08-21T10:12:49.913+0000] {spark_submit.py:571} INFO - at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+[2026-08-21T10:12:49.914+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:934)
+[2026-08-21T10:12:49.914+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+[2026-08-21T10:12:49.914+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:852)
+[2026-08-21T10:12:49.914+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+[2026-08-21T10:12:49.914+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1385)
+[2026-08-21T10:12:49.914+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1306)
+[2026-08-21T10:12:49.914+0000] {spark_submit.py:571} INFO - at com.amazonaws.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:27)
+[2026-08-21T10:12:49.915+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.DelegatingDnsResolver.resolve(DelegatingDnsResolver.java:38)
+[2026-08-21T10:12:49.915+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:112)
+[2026-08-21T10:12:49.915+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+[2026-08-21T10:12:49.915+0000] {spark_submit.py:571} INFO - at jdk.internal.reflect.GeneratedMethodAccessor19.invoke(Unknown Source)
+[2026-08-21T10:12:49.915+0000] {spark_submit.py:571} INFO - at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2026-08-21T10:12:49.915+0000] {spark_submit.py:571} INFO - at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+[2026-08-21T10:12:49.915+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.conn.ClientConnectionManagerFactory$Handler.invoke(ClientConnectionManagerFactory.java:76)
+[2026-08-21T10:12:49.916+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.conn.$Proxy33.connect(Unknown Source)
+[2026-08-21T10:12:49.916+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+[2026-08-21T10:12:49.916+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+[2026-08-21T10:12:49.916+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+[2026-08-21T10:12:49.916+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+[2026-08-21T10:12:49.916+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+[2026-08-21T10:12:49.916+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+[2026-08-21T10:12:49.917+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.apache.client.impl.SdkHttpClient.execute(SdkHttpClient.java:72)
+[2026-08-21T10:12:49.917+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeOneRequest(AmazonHttpClient.java:1346)
+[2026-08-21T10:12:49.917+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1157)
+[2026-08-21T10:12:49.917+0000] {spark_submit.py:571} INFO - ... 114 more
+[2026-08-21T10:14:55.986+0000] {spark_submit.py:571} INFO - 26/08/21 10:14:55 WARN DeltaLog: Failed to parse s3a://silver/cell_kpi_clean/_delta_log/_last_checkpoint. This may happen if there was an error during read operation, or a file appears to be partial. Sleeping and trying again.
+[2026-08-21T10:14:55.986+0000] {spark_submit.py:571} INFO - org.apache.hadoop.fs.s3a.AWSClientIOException: getFileStatus on s3a://silver/cell_kpi_clean/_delta_log/_last_checkpoint: com.amazonaws.SdkClientException: Unable to execute HTTP request: silver.minio: Name or service not known: Unable to execute HTTP request: silver.minio: Name or service not known
+[2026-08-21T10:14:55.986+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AUtils.translateException(S3AUtils.java:214)
+[2026-08-21T10:14:55.986+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AUtils.translateException(S3AUtils.java:175)
+[2026-08-21T10:14:55.987+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3799)
+[2026-08-21T10:14:55.987+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.innerGetFileStatus(S3AFileSystem.java:3688)
+[2026-08-21T10:14:55.987+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.extractOrFetchSimpleFileStatus(S3AFileSystem.java:5401)
+[2026-08-21T10:14:55.987+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1465)
+[2026-08-21T10:14:55.987+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1441)
+[2026-08-21T10:14:55.988+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)
+[2026-08-21T10:14:55.988+0000] {spark_submit.py:571} INFO - at io.delta.storage.HadoopFileSystemLogStore.read(HadoopFileSystemLogStore.java:46)
+[2026-08-21T10:14:55.988+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.storage.LogStoreAdaptor.read(LogStore.scala:412)
+[2026-08-21T10:14:55.988+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.storage.DelegatingLogStore.read(DelegatingLogStore.scala:96)
+[2026-08-21T10:14:55.988+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.$anonfun$loadMetadataFromFile$1(Checkpoints.scala:376)
+[2026-08-21T10:14:55.988+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:14:55.989+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:14:55.989+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordFrameProfile(DeltaLog.scala:74)
+[2026-08-21T10:14:55.989+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:136)
+[2026-08-21T10:14:55.989+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)
+[2026-08-21T10:14:55.989+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)
+[2026-08-21T10:14:55.989+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordOperation(DeltaLog.scala:74)
+[2026-08-21T10:14:55.989+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:135)
+[2026-08-21T10:14:55.990+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:125)
+[2026-08-21T10:14:55.990+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:115)
+[2026-08-21T10:14:55.990+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordDeltaOperation(DeltaLog.scala:74)
+[2026-08-21T10:14:55.990+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.loadMetadataFromFile(Checkpoints.scala:375)
+[2026-08-21T10:14:55.990+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.$anonfun$loadMetadataFromFile$1(Checkpoints.scala:386)
+[2026-08-21T10:14:55.990+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:14:55.990+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:14:55.991+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordFrameProfile(DeltaLog.scala:74)
+[2026-08-21T10:14:55.991+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:136)
+[2026-08-21T10:14:55.991+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)
+[2026-08-21T10:14:55.991+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)
+[2026-08-21T10:14:55.991+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordOperation(DeltaLog.scala:74)
+[2026-08-21T10:14:55.991+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:135)
+[2026-08-21T10:14:55.991+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:125)
+[2026-08-21T10:14:55.991+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:115)
+[2026-08-21T10:14:55.992+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordDeltaOperation(DeltaLog.scala:74)
+[2026-08-21T10:14:55.992+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.loadMetadataFromFile(Checkpoints.scala:375)
+[2026-08-21T10:14:55.992+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.readLastCheckpointFile(Checkpoints.scala:369)
+[2026-08-21T10:14:55.992+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.Checkpoints.readLastCheckpointFile$(Checkpoints.scala:368)
+[2026-08-21T10:14:55.992+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.readLastCheckpointFile(DeltaLog.scala:74)
+[2026-08-21T10:14:55.992+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.$anonfun$getSnapshotAtInit$2(SnapshotManagement.scala:575)
+[2026-08-21T10:14:55.992+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:14:55.993+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:14:55.993+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.recordFrameProfile(DeltaLog.scala:74)
+[2026-08-21T10:14:55.993+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.$anonfun$getSnapshotAtInit$1(SnapshotManagement.scala:573)
+[2026-08-21T10:14:55.993+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.withSnapshotLockInterruptibly(SnapshotManagement.scala:78)
+[2026-08-21T10:14:55.993+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.withSnapshotLockInterruptibly$(SnapshotManagement.scala:75)
+[2026-08-21T10:14:55.993+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.withSnapshotLockInterruptibly(DeltaLog.scala:74)
+[2026-08-21T10:14:55.993+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.getSnapshotAtInit(SnapshotManagement.scala:573)
+[2026-08-21T10:14:55.994+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.getSnapshotAtInit$(SnapshotManagement.scala:572)
+[2026-08-21T10:14:55.994+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.getSnapshotAtInit(DeltaLog.scala:74)
+[2026-08-21T10:14:55.994+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.SnapshotManagement.$init$(SnapshotManagement.scala:69)
+[2026-08-21T10:14:55.994+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog.<init>(DeltaLog.scala:80)
+[2026-08-21T10:14:55.994+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$4(DeltaLog.scala:853)
+[2026-08-21T10:14:55.994+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.allowInvokingTransformsInAnalyzer(AnalysisHelper.scala:323)
+[2026-08-21T10:14:55.994+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$3(DeltaLog.scala:848)
+[2026-08-21T10:14:55.994+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:14:55.995+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:14:55.995+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.recordFrameProfile(DeltaLog.scala:651)
+[2026-08-21T10:14:55.995+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:136)
+[2026-08-21T10:14:55.995+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)
+[2026-08-21T10:14:55.995+0000] {spark_submit.py:571} INFO - at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)
+[2026-08-21T10:14:55.995+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.recordOperation(DeltaLog.scala:651)
+[2026-08-21T10:14:55.996+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:135)
+[2026-08-21T10:14:55.996+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:125)
+[2026-08-21T10:14:55.996+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:115)
+[2026-08-21T10:14:55.996+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.recordDeltaOperation(DeltaLog.scala:651)
+[2026-08-21T10:14:55.996+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.createDeltaLog$1(DeltaLog.scala:847)
+[2026-08-21T10:14:55.996+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$5(DeltaLog.scala:866)
+[2026-08-21T10:14:55.997+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$LocalManualCache$1.load(LocalCache.java:4792)
+[2026-08-21T10:14:55.997+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3599)
+[2026-08-21T10:14:55.997+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2379)
+[2026-08-21T10:14:55.997+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2342)
+[2026-08-21T10:14:55.997+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2257)
+[2026-08-21T10:14:55.997+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache.get(LocalCache.java:4000)
+[2026-08-21T10:14:55.997+0000] {spark_submit.py:571} INFO - at com.google.common.cache.LocalCache$LocalManualCache.get(LocalCache.java:4789)
+[2026-08-21T10:14:55.998+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.getDeltaLogFromCache$1(DeltaLog.scala:865)
+[2026-08-21T10:14:55.998+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.apply(DeltaLog.scala:875)
+[2026-08-21T10:14:55.998+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.DeltaLog$.forTable(DeltaLog.scala:751)
+[2026-08-21T10:14:55.998+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.$anonfun$deltaLog$1(DeltaTableV2.scala:92)
+[2026-08-21T10:14:55.998+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2$.withEnrichedUnsupportedTableException(DeltaTableV2.scala:367)
+[2026-08-21T10:14:55.998+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.deltaLog$lzycompute(DeltaTableV2.scala:92)
+[2026-08-21T10:14:55.998+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.deltaLog(DeltaTableV2.scala:90)
+[2026-08-21T10:14:55.999+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.$anonfun$initialSnapshot$4(DeltaTableV2.scala:145)
+[2026-08-21T10:14:55.999+0000] {spark_submit.py:571} INFO - at scala.Option.getOrElse(Option.scala:189)
+[2026-08-21T10:14:55.999+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.$anonfun$initialSnapshot$1(DeltaTableV2.scala:145)
+[2026-08-21T10:14:55.999+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2$.withEnrichedUnsupportedTableException(DeltaTableV2.scala:367)
+[2026-08-21T10:14:55.999+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.initialSnapshot$lzycompute(DeltaTableV2.scala:144)
+[2026-08-21T10:14:55.999+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.initialSnapshot(DeltaTableV2.scala:124)
+[2026-08-21T10:14:55.999+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.toBaseRelation$lzycompute(DeltaTableV2.scala:236)
+[2026-08-21T10:14:56.000+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.catalog.DeltaTableV2.toBaseRelation(DeltaTableV2.scala:234)
+[2026-08-21T10:14:56.000+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.sources.DeltaDataSource.$anonfun$createRelation$5(DeltaDataSource.scala:250)
+[2026-08-21T10:14:56.000+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+[2026-08-21T10:14:56.000+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+[2026-08-21T10:14:56.000+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.sources.DeltaDataSource.recordFrameProfile(DeltaDataSource.scala:49)
+[2026-08-21T10:14:56.000+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.delta.sources.DeltaDataSource.createRelation(DeltaDataSource.scala:209)
+[2026-08-21T10:14:56.001+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:346)
+[2026-08-21T10:14:56.001+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:229)
+[2026-08-21T10:14:56.001+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.DataFrameReader.$anonfun$load$2(DataFrameReader.scala:211)
+[2026-08-21T10:14:56.001+0000] {spark_submit.py:571} INFO - at scala.Option.getOrElse(Option.scala:189)
+[2026-08-21T10:14:56.001+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)
+[2026-08-21T10:14:56.001+0000] {spark_submit.py:571} INFO - at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:186)
+[2026-08-21T10:14:56.001+0000] {spark_submit.py:571} INFO - at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2026-08-21T10:14:56.002+0000] {spark_submit.py:571} INFO - at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+[2026-08-21T10:14:56.002+0000] {spark_submit.py:571} INFO - at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2026-08-21T10:14:56.002+0000] {spark_submit.py:571} INFO - at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+[2026-08-21T10:14:56.002+0000] {spark_submit.py:571} INFO - at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+[2026-08-21T10:14:56.002+0000] {spark_submit.py:571} INFO - at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+[2026-08-21T10:14:56.003+0000] {spark_submit.py:571} INFO - at py4j.Gateway.invoke(Gateway.java:282)
+[2026-08-21T10:14:56.003+0000] {spark_submit.py:571} INFO - at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+[2026-08-21T10:14:56.003+0000] {spark_submit.py:571} INFO - at py4j.commands.CallCommand.execute(CallCommand.java:79)
+[2026-08-21T10:14:56.003+0000] {spark_submit.py:571} INFO - at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+[2026-08-21T10:14:56.003+0000] {spark_submit.py:571} INFO - at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+[2026-08-21T10:14:56.003+0000] {spark_submit.py:571} INFO - at java.base/java.lang.Thread.run(Thread.java:840)
+[2026-08-21T10:14:56.004+0000] {spark_submit.py:571} INFO - Caused by: com.amazonaws.SdkClientException: Unable to execute HTTP request: silver.minio: Name or service not known
+[2026-08-21T10:14:56.004+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleRetryableException(AmazonHttpClient.java:1219)
+[2026-08-21T10:14:56.004+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1165)
+[2026-08-21T10:14:56.004+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.doExecute(AmazonHttpClient.java:814)
+[2026-08-21T10:14:56.004+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeWithTimer(AmazonHttpClient.java:781)
+[2026-08-21T10:14:56.005+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.execute(AmazonHttpClient.java:755)
+[2026-08-21T10:14:56.005+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.access$500(AmazonHttpClient.java:715)
+[2026-08-21T10:14:56.005+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutionBuilderImpl.execute(AmazonHttpClient.java:697)
+[2026-08-21T10:14:56.005+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:561)
+[2026-08-21T10:14:56.005+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:541)
+[2026-08-21T10:14:56.005+0000] {spark_submit.py:571} INFO - at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5456)
+[2026-08-21T10:14:56.006+0000] {spark_submit.py:571} INFO - at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5403)
+[2026-08-21T10:14:56.006+0000] {spark_submit.py:571} INFO - at com.amazonaws.services.s3.AmazonS3Client.getObjectMetadata(AmazonS3Client.java:1372)
+[2026-08-21T10:14:56.006+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.lambda$getObjectMetadata$10(S3AFileSystem.java:2545)
+[2026-08-21T10:14:56.006+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.Invoker.retryUntranslated(Invoker.java:414)
+[2026-08-21T10:14:56.006+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.Invoker.retryUntranslated(Invoker.java:377)
+[2026-08-21T10:14:56.006+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.getObjectMetadata(S3AFileSystem.java:2533)
+[2026-08-21T10:14:56.007+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.getObjectMetadata(S3AFileSystem.java:2513)
+[2026-08-21T10:14:56.007+0000] {spark_submit.py:571} INFO - at org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3776)
+[2026-08-21T10:14:56.007+0000] {spark_submit.py:571} INFO - ... 111 more
+[2026-08-21T10:14:56.007+0000] {spark_submit.py:571} INFO - Caused by: java.net.UnknownHostException: silver.minio: Name or service not known
+[2026-08-21T10:14:56.007+0000] {spark_submit.py:571} INFO - at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+[2026-08-21T10:14:56.008+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:934)
+[2026-08-21T10:14:56.008+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+[2026-08-21T10:14:56.008+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:852)
+[2026-08-21T10:14:56.008+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+[2026-08-21T10:14:56.008+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1385)
+[2026-08-21T10:14:56.008+0000] {spark_submit.py:571} INFO - at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1306)
+[2026-08-21T10:14:56.009+0000] {spark_submit.py:571} INFO - at com.amazonaws.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:27)
+[2026-08-21T10:14:56.009+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.DelegatingDnsResolver.resolve(DelegatingDnsResolver.java:38)
+[2026-08-21T10:14:56.009+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:112)
+[2026-08-21T10:14:56.009+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+[2026-08-21T10:14:56.009+0000] {spark_submit.py:571} INFO - at jdk.internal.reflect.GeneratedMethodAccessor19.invoke(Unknown Source)
+[2026-08-21T10:14:56.009+0000] {spark_submit.py:571} INFO - at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2026-08-21T10:14:56.010+0000] {spark_submit.py:571} INFO - at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+[2026-08-21T10:14:56.010+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.conn.ClientConnectionManagerFactory$Handler.invoke(ClientConnectionManagerFactory.java:76)
+[2026-08-21T10:14:56.010+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.conn.$Proxy33.connect(Unknown Source)
+[2026-08-21T10:14:56.010+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+[2026-08-21T10:14:56.010+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+[2026-08-21T10:14:56.011+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+[2026-08-21T10:14:56.011+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+[2026-08-21T10:14:56.011+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+[2026-08-21T10:14:56.011+0000] {spark_submit.py:571} INFO - at com.amazonaws.thirdparty.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+[2026-08-21T10:14:56.011+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.apache.client.impl.SdkHttpClient.execute(SdkHttpClient.java:72)
+[2026-08-21T10:14:56.011+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeOneRequest(AmazonHttpClient.java:1346)
+[2026-08-21T10:14:56.012+0000] {spark_submit.py:571} INFO - at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1157)
+[2026-08-21T10:14:56.012+0000] {spark_submit.py:571} INFO - ... 127 more
+[2026-08-21T10:16:09.167+0000] {local_task_job_runner.py:310} WARNING - State of this instance has been externally set to restarting. Terminating instance.
+[2026-08-21T10:16:09.167+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-08-21T10:16:09.169+0000] {process_utils.py:132} INFO - Sending 15 to group 2323. PIDs of all processes in the group: [2324, 2389, 2323]
+[2026-08-21T10:16:09.170+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 2323
+[2026-08-21T10:16:09.170+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-08-21T10:16:09.170+0000] {spark_submit.py:697} INFO - Sending kill signal to spark-submit
+[2026-08-21T10:16:09.171+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-21T10:16:09.180+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 174, in execute
+    self._hook.submit(self.application)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 490, in submit
+    self._process_spark_submit_log(iter(self._submit_sp.stdout))  # type: ignore
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 539, in _process_spark_submit_log
+    for line in itr:
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-08-21T10:16:09.183+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=cell_kpi_hourly_anomaly_pipeline, task_id=3_offline_train_baseline, run_id=scheduled__2025-05-31T18:00:00+00:00, execution_date=20250531T180000, start_date=20260821T095418, end_date=20260821T101609
+[2026-08-21T10:16:09.222+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=2323, status='terminated', exitcode=2, started='09:54:18') (2323) terminated with exit code 2
+[2026-08-21T10:16:09.224+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=2389, status='terminated', started='09:54:22') (2389) terminated with exit code None
+[2026-08-21T10:16:09.225+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=2324, status='terminated', started='09:54:18') (2324) terminated with exit code None

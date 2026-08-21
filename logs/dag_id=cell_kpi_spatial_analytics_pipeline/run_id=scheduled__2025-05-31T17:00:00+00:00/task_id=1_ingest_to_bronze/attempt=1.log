@@ -1,0 +1,37 @@
+[2026-08-21T02:35:56.054+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-08-21T02:35:56.081+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.1_ingest_to_bronze scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:35:56.090+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cell_kpi_spatial_analytics_pipeline.1_ingest_to_bronze scheduled__2025-05-31T17:00:00+00:00 [queued]>
+[2026-08-21T02:35:56.090+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-08-21T02:35:56.114+0000] {taskinstance.py:2330} INFO - Executing <Task(SparkSubmitOperator): 1_ingest_to_bronze> on 2025-05-31 17:00:00+00:00
+[2026-08-21T02:35:56.127+0000] {standard_task_runner.py:63} INFO - Started process 240 to run task
+[2026-08-21T02:35:56.137+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'cell_kpi_spatial_analytics_pipeline', '1_ingest_to_bronze', 'scheduled__2025-05-31T17:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/kpi_hourly_dag.py', '--cfg-path', '/tmp/tmpb1faskhd']
+[2026-08-21T02:35:56.144+0000] {standard_task_runner.py:91} INFO - Job 3: Subtask 1_ingest_to_bronze
+[2026-08-21T02:35:56.284+0000] {task_command.py:426} INFO - Running <TaskInstance: cell_kpi_spatial_analytics_pipeline.1_ingest_to_bronze scheduled__2025-05-31T17:00:00+00:00 [running]> on host c90a551abb73
+[2026-08-21T02:35:56.612+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.10/site-packages/***/utils/context.py:212 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-08-21T02:35:56.754+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer_team' AIRFLOW_CTX_DAG_ID='cell_kpi_spatial_analytics_pipeline' AIRFLOW_CTX_TASK_ID='1_ingest_to_bronze' AIRFLOW_CTX_EXECUTION_DATE='2025-05-31T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-05-31T17:00:00+00:00'
+[2026-08-21T02:35:56.755+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-08-21T02:35:56.830+0000] {base.py:84} INFO - Using connection ID 'spark-master' for task execution.
+[2026-08-21T02:35:56.834+0000] {spark_submit.py:401} INFO - Spark-Submit cmd: spark-submit --master spark://spark-master:7077 --name arrow-spark --deploy-mode client /opt/spark_scripts/1_ingest_data.py --type cell_kpi --date 2025-05-31 --input_path s3a://landingzone/202505.csv
+[2026-08-21T02:35:57.144+0000] {spark_submit.py:571} INFO - /home/***/.local/lib/python3.10/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2026-08-21T02:36:02.569+0000] {spark_submit.py:571} INFO - python3: can't open file '/opt/spark_scripts/1_ingest_data.py': [Errno 2] No such file or directory
+[2026-08-21T02:36:02.585+0000] {spark_submit.py:571} INFO - 26/08/21 02:36:02 INFO ShutdownHookManager: Shutdown hook called
+[2026-08-21T02:36:02.587+0000] {spark_submit.py:571} INFO - 26/08/21 02:36:02 INFO ShutdownHookManager: Deleting directory /tmp/spark-79b8e01e-77d9-4a20-8fd0-9534e396e654
+[2026-08-21T02:36:02.643+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-08-21T02:36:02.653+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 174, in execute
+    self._hook.submit(self.application)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 502, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master spark://spark-master:7077 --name arrow-spark --deploy-mode client /opt/spark_scripts/1_ingest_data.py --type cell_kpi --date 2025-05-31 --input_path s3a://landingzone/202505.csv. Error code is: 2.
+[2026-08-21T02:36:02.660+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=cell_kpi_spatial_analytics_pipeline, task_id=1_ingest_to_bronze, run_id=scheduled__2025-05-31T17:00:00+00:00, execution_date=20250531T170000, start_date=20260821T023556, end_date=20260821T023602
+[2026-08-21T02:36:02.685+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 3 for task 1_ingest_to_bronze (Cannot execute: spark-submit --master spark://spark-master:7077 --name arrow-spark --deploy-mode client /opt/spark_scripts/1_ingest_data.py --type cell_kpi --date 2025-05-31 --input_path s3a://landingzone/202505.csv. Error code is: 2.; 240)
+[2026-08-21T02:36:02.720+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-08-21T02:36:02.734+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-08-21T02:36:02.735+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
